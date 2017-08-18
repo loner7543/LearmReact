@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Пользоваьельские компоненты</title>
+    <title>Пользоваьельские компоненты и свойства</title>
     <meta charset="utf-8">
 </head>
 <body>
@@ -8,6 +8,10 @@
     <!-- сюда буудут добавлены компоненты Пока пишу без JSX-->
 </div>
 <div id="list">
+
+</div>
+
+<div id="favoriteCar">
 
 </div>
 <script src="../react_source/react.js"></script>
@@ -32,8 +36,22 @@
                 )
             }
         }
-    );<!-- доп параметр-->
+    );<!--  0-доп параметр-->
 
+    var favoriteCar = React.createClass(
+        {
+            propTypes: {
+                name: React.PropTypes.string.isRequired
+            },
+
+            getDefaultProps:function () {
+              return {carName : "Ведро с гайками"};
+            },
+            render:function () {
+                return React.DOM.h2(null,"Мне нравится "+this.props.carName)
+            }
+        }
+    );<!--this.props.carName берет все свойства компонента-->
     ReactDOM.render(
         React.createElement(Component),
         document.getElementById("app")
@@ -43,7 +61,16 @@
         React.createElement(inlineComponent),
         document.getElementById("list")
     );
+
+    ReactDOM.render(
+        React.createElement(favoriteCar, {
+            //carName: 12
+        }),
+        document.getElementById("favoriteCar")
+    );<!--При отображении комопнента передали ему свойства-->
 </script>
-<!--Object.keys(React.DOM) - список всех свойств объекта-->
+<!--Object.keys(React.DOM) - список всех свойств объекта
+
+getDefaultProps - устанавливает свойства по умолчанию-->
 </body>
 </html>
