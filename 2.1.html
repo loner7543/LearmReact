@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Пользоваьельские компоненты</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<div id="app">
+    <!-- сюда буудут добавлены компоненты Пока пишу без JSX-->
+</div>
+<div id="list">
+
+</div>
+<script src="../react_source/react.js"></script>
+<script src="../react_source/react-dom.min.js"></script>
+<script>
+    var Component = React.createClass({<!--создали свой коспонент-->
+        render: function() {
+            return React.DOM.span(null, "I'm so custom");
+        }
+    });
+
+    var inlineComponent = React.createClass(
+        {
+            render:function () {
+                return React.DOM.h1(
+                    {id: "my-heading"},
+                    React.DOM.span(null,
+                        React.DOM.em(null, "Hell"),
+                        "o"
+                    ),
+                    " world!"
+                )
+            }
+        }
+    );<!-- доп параметр-->
+
+    ReactDOM.render(
+        React.createElement(Component),
+        document.getElementById("app")
+    );<!--поместили  компонер т на страницу-->
+
+    ReactDOM.render(
+        React.createElement(inlineComponent),
+        document.getElementById("list")
+    );
+</script>
+<!--Object.keys(React.DOM) - список всех свойств объекта-->
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>hello React</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<div id="app">
+    <!-- my app renders here -->
+</div>
+
+<div id="pEx">
+
+</div>
+<script src="../react_source/react.js"></script>
+<script src="../react_source/react-dom.min.js"></script>
+<script>
+    ReactDOM.render(
+        React.DOM.h1(
+            {
+                style: {
+                    background: "black",
+                    color: "white",<!--Исп-ся названия css свойств из react-->
+                    fontFamily: "Verdana",
+                }
+            },
+            "Hello World!"
+        ), <!--1- свойства 2- дочерний элемент что рендерить и куда рендерить-->
+        document.getElementById("app")
+    );
+
+    ReactDOM.render(
+        React.DOM.p(null,"Это абзац"),
+        document.getElementById("pEx")
+    );
+</script>
+<!--Object.keys(React.DOM) - список всех свойств объекта-->
+</body>
+</html>
