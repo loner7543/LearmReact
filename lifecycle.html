@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Жизненный цикл</title>
+</head>
+<script src="../react_source/react.js"></script>
+<script src="../react_source/react-dom.min.js"></script>
+<body>
+<div id="container"></div>
+<script>
+    var TextAreaCounter = React.createClass({
+        propTypes: {
+            text: React.PropTypes.string,
+        },
+        getDefaultProps: function() {
+            return {
+                text: '',
+            };
+        },
+        getInitialState: function() {
+            return{text: this.props.text}
+        },
+        logger:function (method,params) {
+            console.log(method,params);
+        },
+
+        <!--Методы ЖЦ-->
+        componentWillUpdate: function() {
+            this.logger('componentWillUpdate', arguments);
+        },
+        componentDidUpdate: function() {
+            this.logger('componentDidUpdate', arguments);
+        },
+        componentWillMount: function() {
+            this.logger('componentWillMount', arguments);
+        },
+        componentDidMount: function() {
+            this.logger('componentDidMount', arguments);
+        },
+        componentWillUnmount: function() {
+          this.logger('componentWillUnmount',arguments)
+        },
+
+
+        componentWillReceiveProps:function (newProp) {
+            this.setState({text:newProp.defaultValue})
+        },<!--Для изменение состояния извне-->
+
+        _textChange: function(ev) {
+            this.setState({
+                text: ev.target.value,
+            });
+        },
+        render: function() {
+            return React.DOM.div(null,
+                React.DOM.textarea({
+                    value: this.state.text,
+                    onChange: this._textChange,
+                }),
+                React.DOM.h3(null, this.state.text.length)
+            );
+        }
+    });
+
+    var outside =  ReactDOM.render(
+        React.createElement(TextAreaCounter, {
+            text: "Bob",
+        }),
+        document.getElementById("container")
+    );
+</script>
+</body>
+</html>
